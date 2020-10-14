@@ -236,7 +236,7 @@ def train(discriminator, generator, dataset, dlr=0.005, glr=0.005, batch_size=64
             fea_m_ff = F.softmax(fea_matrix_ff.squeeze(), dim=1)
             struct_loss_ff = torch.mean(mse_loss(att_m, fea_m_ff))
 
-            #avg struct loss 
+            #structural consistency loss
             all_att_matrix = seen_att_original @ unseen_att.t() # 40*85 * 85*10 = 40 * 10
             all_att_m = F.softmax(all_att_matrix.squeeze(), dim=1)    
             all_fea_matrix = seen_avg_fea @ fea_fake_unseen.t() #40*2048 * 2048*10 = 40 * 10
